@@ -20,7 +20,7 @@ fn enter_playing(mut commands: Commands) {
     commands.trigger(SpawnLevel);
 }
 
-// TODO: Reset camera transform here.
+// TODO: Reset camera transform here, despawn level
 fn exit_playing() {}
 
 fn return_to_title_screen(mut next_screen: ResMut<NextState<Screen>>) {

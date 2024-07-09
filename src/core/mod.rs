@@ -1,6 +1,6 @@
 //! Foundational features and cross-cutting concerns.
 
-mod asset;
+pub(crate) mod asset;
 pub(crate) mod booting;
 mod camera;
 mod deflicker;
@@ -14,6 +14,7 @@ pub(super) fn plugin(app: &mut App) {
     // Bevy plugins.
     app.add_plugins(
         DefaultPlugins
+            .set(ImagePlugin::default_nearest()) // prevents blurry sprites
             .build()
             // Add `AssetPlugin` via `asset::plugin`.
             .disable::<AssetPlugin>()

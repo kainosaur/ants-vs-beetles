@@ -5,8 +5,9 @@
 use bevy::prelude::*;
 
 pub(crate) mod level;
-pub(crate) mod player;
+pub(crate) mod field;
+pub(crate) mod cards;
 
 pub(super) fn plugin(app: &mut App) {
-    app.add_plugins((level::plugin, player::plugin));
+    app.add_plugins((level::plugin, cards::plugin, field::plugin));
 }

@@ -7,9 +7,7 @@
 
 use bevy::prelude::*;
 
-mod movement;
-mod physics;
-mod render;
+pub(crate) mod place_ants;
 pub(crate) mod spawn;
 
 pub(super) fn plugin(app: &mut App) {
@@ -18,9 +16,6 @@ pub(super) fn plugin(app: &mut App) {
         (GameSystem::UpdateTransform, GameSystem::ReadInput).chain(),
     );
     app.add_plugins((
-        movement::plugin,
-        physics::plugin,
-        render::plugin,
         spawn::plugin,
     ));
 }
