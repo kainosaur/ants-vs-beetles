@@ -7,7 +7,7 @@
 
 use bevy::prelude::*;
 
-pub(crate) mod place_ants;
+pub(crate) mod unit_selection;
 pub(crate) mod spawn;
 
 pub(super) fn plugin(app: &mut App) {
@@ -17,6 +17,7 @@ pub(super) fn plugin(app: &mut App) {
     );
     app.add_plugins((
         spawn::plugin,
+        unit_selection::plugin,
     ));
 }
 

@@ -49,7 +49,7 @@ fn spawn_cards(
     let ant_layout = TextureAtlasLayout::from_grid(UVec2::splat(32), 4, 1, None, None);
     let texture_atlas_ant_layout = texture_atlas_layouts.add(ant_layout);
     // Card for the ant to be on
-    let card_backing = Mesh2dHandle(meshes.add(Rectangle::new(50.0, 75.0)));
+    let card_backing = Mesh2dHandle(meshes.add(Rectangle::new(1.0, 1.0)));
     let ant_amount = CARD_TYPES.len();
     // Loop through all cards, spawn on screen
     for (i, card_type) in CARD_TYPES.iter().enumerate() {
@@ -61,30 +61,36 @@ fn spawn_cards(
                     -X_EXTENT / 2. + i as f32 / (ant_amount - 1) as f32 * X_EXTENT,
                     CARD_Y_POSITION,
                     1.0,
-                ).with_scale(Vec3::new(2.,2., 0.)),
+                ).with_scale(Vec3::new(
+                    75.0,
+                    100.,
+                    1.0,
+                )),
                 ..default()
             },
-                StateScoped(Screen::Playing),
-        )).with_children(|parent| {
-        parent.spawn((*card_type, 
-            // Sprite of the Ant
-            SpriteBundle {
-                texture: game_assets.ants.clone(),
-                transform: Transform::from_xyz(
-                    0.0,
-                    0.0,
-                    2.0
-                ),
-                ..default()
-            },
-            // Index of the ant
-            TextureAtlas {
-                layout: texture_atlas_ant_layout.clone(),
-                index: i,
-            },
-        ));
-    });
+            StateScoped(Screen::Playing),
+        ))
+        .with_children(|parent| {
+            parent.spawn((*card_type, 
+                // Sprite of the Ant
+                SpriteBundle {
+                    texture: game_assets.ants.clone(),
+                    transform: Transform::from_xyz(
+                        0.0,
+                        0.0,
+                        6.0
+                    ).with_scale(Vec3::splat(
+                        0.05
+                    )),
+                    ..default()
+                },
+                // Index of the ant
+                TextureAtlas {
+                    layout: texture_atlas_ant_layout.clone(),
+                    index: i,
+                },
+                ));
+            });
     }
-
 }
 
