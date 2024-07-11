@@ -7,18 +7,15 @@
 
 use bevy::prelude::*;
 
-pub(crate) mod unit_selection;
 pub(crate) mod spawn;
+pub(crate) mod unit_selection;
 
 pub(super) fn plugin(app: &mut App) {
     app.configure_sets(
         Update,
         (GameSystem::UpdateTransform, GameSystem::ReadInput).chain(),
     );
-    app.add_plugins((
-        spawn::plugin,
-        unit_selection::plugin,
-    ));
+    app.add_plugins((spawn::plugin, unit_selection::plugin));
 }
 
 #[derive(Debug, SystemSet, Clone, Copy, Eq, PartialEq, Hash)]

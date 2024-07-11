@@ -2,7 +2,7 @@
 
 use bevy::prelude::*;
 
-use super::{field::SpawnField, cards::SpawnCards};
+use super::{cards::SpawnCards, field::SpawnField};
 
 pub(super) fn plugin(app: &mut App) {
     app.observe(spawn_level);
